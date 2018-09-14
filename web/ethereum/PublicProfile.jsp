@@ -187,7 +187,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="x in y| filter:{ type :'Buy' }">
-                        <td>{{x.id}}</td>
+                        <td>{{x.id}}</td>{{x.type}}hgjhj
                         <td><a ui-sref="PublicProfile({username:x.username})">{{x.name}}</a></td>
                         <td >{{x.price}}$</td>
                         <td style="font-size: 16px;font-weight: bold;color: green;">{{x.min_transaction}}$ -- {{x.max_transcation}}$</td>
@@ -197,6 +197,7 @@
 
         </div>
     </div>
+  </div>
 
 
 

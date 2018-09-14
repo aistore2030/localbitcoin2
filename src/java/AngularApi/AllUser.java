@@ -10,9 +10,12 @@ import com.function.currencyconverter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.login.Util;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,6 +27,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -59,7 +64,7 @@ public class AllUser extends HttpServlet {
             if (username.equals("admin")) {
                 // query = "SELECT * from register r , ( select  sum(cr) scr ,sum(dr) sdr,coin ,username from   transactions   GROUP by coin ,username ) t where t.username=r.username order by id desc";
 
-                query = "SELECT r.id,r.username,r.name,r.email,r.mobile,r.status,r.email_verified,r.domain,t.balance ,t.coin,d.bitcoin from register r , ( select sum(cr)-sum(dr) as balance ,coin ,username from transactions GROUP by coin ,username ) t ,depositaddress d where t.username=r.username and d.username=r.username ";
+                query = "SELECT r.id,r.username,r.name,r.email,r.mobile,r.status,r.email_verified,r.domain,t.coin,d.bitcoin from register r , ( SELECT coin ,username from transactions GROUP by coin ,username ) t ,depositaddress d where t.username=r.username and d.username=r.username  ";
 
                 System.out.println(query);
                 rs = st.executeQuery(query);
@@ -133,7 +138,7 @@ public class AllUser extends HttpServlet {
                 a1.trusted = rs.getString("trusted");
                 a1.sms_verified = rs.getString("sms_verified");
                 a1.email_verified = rs.getString("email_verified");
-                a1.date = rs.getString("date");
+                //a1.date = rs.getString("date");
 
                 a1.identified = rs.getString("identified");
                 a1.identification_document = rs.getString("identification_document");
@@ -184,7 +189,96 @@ public class AllUser extends HttpServlet {
             Logger.getLogger(AllUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+@Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("application/json;charset=UTF-8");
+        
+         try (
+                Connection con = Util.getConnection();
+                Statement st = con.createStatement();)
+          {
+            PrintWriter out = response.getWriter();
+            HttpSession session = request.getSession();
+            String rolls = String.valueOf(session.getAttribute("roll")).trim();
 
+            int roll = Integer.parseInt(rolls);
+
+            if (roll < 10) {
+
+                out.println("{\"Error\":true,\"Message\": \"Incorrect Login...\" }");
+
+            } else {
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+                String json = "";
+                if (br != null) {
+                    json = br.readLine();
+                }
+
+                JSONObject jsonObj = new JSONObject(json);
+                System.out.println(json);
+                
+                String user = jsonObj.getString("username");
+                System.out.println(user);
+                String case1 = jsonObj.getString("case");
+                System.out.println(case1);
+
+                
+                if (case1.equals("Delete")) {
+
+                    PreparedStatement stmt = con.prepareStatement("delete from register   where username=?");
+
+                    stmt.setString(1, user);
+
+                    int i = stmt.executeUpdate();
+
+                    if (i > 0) {
+                        out.println("{\"Error\":false,\"Message\": \"Request Accepted\" }");
+
+                    } else {
+                        System.out.println("{\"Error\": true ,\"Message\": \"Some Error\" }");
+                    }
+                } else if (case1.equals("resetGoogleAuth")) {
+
+                    PreparedStatement stmt = con.prepareStatement("update register set  google_auth_status ='Disable' , secret_key=null      where username=?");
+
+                    stmt.setString(1, user);
+
+                    int i = stmt.executeUpdate();
+
+                    if (i > 0) {
+                        out.println("{\"Error\":false,\"Message\": \"Request Accepted\" }");
+
+                    } else {
+                        System.out.println("{\"Error\": true ,\"Message\": \"Some Error\" }");
+                    }
+                } else {
+                    PreparedStatement stmt = con.prepareStatement("update register set status=?   where username=?");
+
+                    stmt.setString(1, case1);
+                    stmt.setString(2, user);
+
+                    int i = stmt.executeUpdate();
+
+                    if (i > 0) {
+                        out.println("{\"Error\":false,\"Message\": \"Request Accepted\" }");
+
+                    } else {
+                        System.out.println("{\"Error\": true ,\"Message\": \"Some Error\" }");
+                    }
+                }
+
+            }
+
+        } catch (JSONException ex) {
+            Logger.getLogger(AllUser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AllUser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(AllUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * Returns a short description of the servlet.
      *

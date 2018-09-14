@@ -44,9 +44,10 @@ public class EmailVerify extends HttpServlet {
         try (PrintWriter out = response.getWriter();
                 Connection con = Util.getConnection();
             Statement st = con.createStatement();) {
-            ResultSet rs;HttpSession session = request.getSession();
+            ResultSet rs;
+            HttpSession session = request.getSession();
 
-            String email = ((String) session.getAttribute("username")).trim();
+            String email = String.valueOf(session.getAttribute("username")).trim();
 
             String url = request.getRequestURL().toString();
 

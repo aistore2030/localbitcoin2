@@ -8,7 +8,7 @@
 angular.module('mApp', ['ui.router', 'ngResource', 'mApp.controllers', 'mApp.services',
     'ngClickCopy', 'ngAnimate', 'ngSanitize', 'ui.bootstrap',
     'angularFileUpload']);
-angular.module('btford.socket-io', []).
+/**angular.module('btford.socket-io', []).
   provider('socketFactory', function () {
 
     'use strict';
@@ -103,7 +103,7 @@ angular.module('btford.socket-io', []).
         return wrappedSocket;
       };
     }];
-  });
+  });*/
 angular.module('mApp').config(function ($stateProvider) {
     $stateProvider.state('Profile', {
         url: '/profile',

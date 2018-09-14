@@ -3,7 +3,7 @@
     Created on : Jan 12, 2018, 1:14:52 PM
     Author     : Saksham
 --%>
-<%@page import="//com.function.VerfiyBeforeTrade"%>
+
 
 <div class="row">
     <h2>Sell BitCoin using {{myTxt.payment_method}} with {{myTxt.currency}} </h2>
@@ -128,3 +128,4 @@
 
             </div>
         </div></div> 
+                </div>

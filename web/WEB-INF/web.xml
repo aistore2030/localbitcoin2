@@ -68,6 +68,62 @@
         <servlet-name>addtransaction</servlet-name>
         <servlet-class>com.function.addtransaction</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SetMargin</servlet-name>
+        <servlet-class>AngularApi.SetMargin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>creditdebit</servlet-name>
+        <servlet-class>AngularApi.creditdebit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Transaction_Detail</servlet-name>
+        <servlet-class>AngularApi.Transaction_Detail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateOrder</servlet-name>
+        <servlet-class>AngularApi.CreateOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Wget</servlet-name>
+        <servlet-class>com.system.Wget</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetTrade</servlet-name>
+        <servlet-class>AngularApi.GetTrade</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WalletSetting</servlet-name>
+        <servlet-class>AngularApi.WalletSetting</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>bitorder</servlet-name>
+        <servlet-class>AngularApi.bitorder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadImage</servlet-name>
+        <servlet-class>AngularApi.UploadImage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PendingAnswer</servlet-name>
+        <servlet-class>com.support.PendingAnswer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Support_Ticket</servlet-name>
+        <servlet-class>com.support.Support_Ticket</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaveMessage</servlet-name>
+        <servlet-class>com.support.SaveMessage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Bitaddress</servlet-name>
+        <servlet-class>AngularApi.Bitaddress</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SetGoogleAuth</servlet-name>
+        <servlet-class>AngularApi.SetGoogleAuth</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -135,6 +191,62 @@
     <servlet-mapping>
         <servlet-name>addtransaction</servlet-name>
         <url-pattern>/addtransaction</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetMargin</servlet-name>
+        <url-pattern>/SetMargin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>creditdebit</servlet-name>
+        <url-pattern>/creditdebit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Transaction_Detail</servlet-name>
+        <url-pattern>/Transaction_Detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateOrder</servlet-name>
+        <url-pattern>/CreateOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Wget</servlet-name>
+        <url-pattern>/Wget</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetTrade</servlet-name>
+        <url-pattern>/GetTrade</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WalletSetting</servlet-name>
+        <url-pattern>/WalletSetting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bitorder</servlet-name>
+        <url-pattern>/bitorder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadImage</servlet-name>
+        <url-pattern>/UploadImage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PendingAnswer</servlet-name>
+        <url-pattern>/PendingAnswer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Support_Ticket</servlet-name>
+        <url-pattern>/Support_Ticket</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveMessage</servlet-name>
+        <url-pattern>/SaveMessage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Bitaddress</servlet-name>
+        <url-pattern>/Bitaddress</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetGoogleAuth</servlet-name>
+        <url-pattern>/SetGoogleAuth</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

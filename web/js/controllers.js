@@ -211,10 +211,10 @@ angular.module('mApp.controllers', [])
     };
 
 }).controller('ChatboxController', function ($scope, Chatbox, $stateParams, $state, CheckOrder, $interval,
-        getbitorder, SellBitcoinOrder, FileUploader, mySocket, $http) {
+        getbitorder, SellBitcoinOrder, FileUploader, $http) {
     console.log("ChatboxController");
 
-    mySocket.on('newChat', function () {
+   /* mySocket.on('newChat', function () {
         console.log("mySocket called");
 
         $scope.myTxt = Chatbox.query({
@@ -222,8 +222,11 @@ angular.module('mApp.controllers', [])
 
         });
         console.log($scope.myTxt);
-    });
+    });*/
+ $scope.myTxt = Chatbox.query({
+            id: $stateParams.id
 
+        });
 
 
 
@@ -252,10 +255,10 @@ angular.module('mApp.controllers', [])
         u.contactId = $stateParams.id;
         u.$update(function (msg) {
             // alert(msg.Message);
-            //$scope.myTxt = Chatbox.query({
-            //id: $stateParams.id
+            $scope.myTxt = Chatbox.query({
+            id: $stateParams.id
 
-            //});
+            });
 
 
             $http({
@@ -1262,7 +1265,7 @@ angular.module('mApp.controllers', [])
 
     $scope.x1 = userbalance.get();
 
-}).controller('credittouserController', function ($scope, creditdebit, $stateParams) {
+}).controller('credittouserController', function ($scope,$state, creditdebit, $stateParams) {
 
     $scope.x = creditdebit.get({
         username: $stateParams.username
@@ -1274,12 +1277,19 @@ angular.module('mApp.controllers', [])
         console.log(x);
         x.$update(function (msg) {
             alert(msg.Message);
-
+               if (msg.Error === false)
+            {
+                $state.go('AllUser');
+            } else {
+                $state.go('CreditToUser',{
+                 username: $stateParams.username   
+                });
+            }
         });
 
     };
 
-}).controller('debittouserController', function ($scope, creditdebit, $stateParams) {
+}).controller('debittouserController', function ($scope,$state, creditdebit, $stateParams) {
 
     $scope.x = creditdebit.get({
         username: $stateParams.username
@@ -1292,7 +1302,14 @@ angular.module('mApp.controllers', [])
         x.cse = "debit";
         x.$update(function (msg) {
             alert(msg.Message);
-
+                if (msg.Error === false)
+            {
+                $state.go('AllUser');
+            } else {
+                $state.go('CreditToUser',{
+                 username: $stateParams.username   
+                });
+            }
         });
 
     };
@@ -1550,7 +1567,7 @@ angular.module('mApp.controllers', [])
 
 }).controller('TicketReportController', function ($scope, report) {
 
-
+    
     $scope.records = report.query();
     $scope.Close = function (x) {
         x.case = "Disable";

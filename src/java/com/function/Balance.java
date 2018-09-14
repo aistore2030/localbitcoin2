@@ -29,6 +29,7 @@ public class Balance extends HttpServlet {
     private String balance;
     private String error;
     public String bitcoinbalance;
+    public String BitBal;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,7 +48,7 @@ public class Balance extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Balance</title>");            
+            out.println("<title>Servlet Balance</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Balance at " + request.getContextPath() + "</h1>");
@@ -55,7 +56,8 @@ public class Balance extends HttpServlet {
             out.println("</html>");
         }
     }
-        public String getBalancecoin(String username, String coin, String domain) throws SQLException, Exception {
+
+    public String getBalancecoin(String username, String coin, String domain) throws SQLException, Exception {
 
         Double balance = 0.00;
         Connection con = null;
@@ -89,7 +91,33 @@ public class Balance extends HttpServlet {
         return amm;
 
     }
-  public Balance getBalance(String username, String domain) throws SQLException, Exception {
+
+    public Balance getBalanceCoinBased(String username, String domain, String coin) throws SQLException, Exception {
+        Double balance = 0.00;
+        Connection con = null;
+        Statement st = null;
+        Gson gson = new GsonBuilder().create();
+        Balance b = new Balance();
+        try {
+            con = Util.getConnection();
+            st = con.createStatement();
+            System.out.println(domain);
+            String bitcoinbalance = getBalancecoin(username, "bitcoin", domain);
+            b.balance = String.valueOf(bitcoinbalance);
+            b.BitBal = bitcoinbalance;//bitcoinbalance * bitvalue;
+            b.error = "false";
+            return b;
+        } catch (Exception e) {
+            b.balance = "0";
+            b.BitBal = "0";//bitcoinbalance * bitvalue;
+            b.error = "true";
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return b;
+    }
+
+    public Balance getBalance(String username, String domain) throws SQLException, Exception {
         System.out.println("Balance");
         Double balance = 0.00;
         Connection con = null;
@@ -116,6 +144,7 @@ public class Balance extends HttpServlet {
 
         return b;
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

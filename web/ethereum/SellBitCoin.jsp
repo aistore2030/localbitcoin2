@@ -9,7 +9,7 @@
 
     <thead>
         <tr>	<th>ID</th>
-            <th><Buyer</th>
+            <th>Buyer</th>
             <th>Price/BRL</th>
             <th>Limits</th>
             <th>Action</th>
