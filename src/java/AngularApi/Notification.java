@@ -46,18 +46,37 @@ public class Notification extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Notification</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Notification at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+       response.setContentType("application/json;charset=UTF-8");
+        
+       
+        
+        ResultSet rs;
+        HttpSession session = request.getSession();
+        String username = String.valueOf(session.getAttribute("username")).trim();
+        try (PrintWriter out = response.getWriter();
+                Connection con = Util.getConnection();
+                Statement st = con.createStatement();) { 
+           
+            PreparedStatement stmt = con.prepareStatement("select id, notification,link,date from notification where user1='" + username + "' or user2='" + username + "' or admin='" + username + "' order by id DESC");
+            System.out.println("select id, notification,link,date from notification where user1='" + username + "' or user2='" + username + "' order by id desc limit 5");
+            rs = stmt.executeQuery();
+            System.out.println(stmt);
+            ArrayList<Notification> r = new ArrayList<>();
+            while (rs.next()) {
+                Notification r1 = new Notification();
+                r1.id = rs.getInt("id");
+                r1.notification = rs.getString("notification");
+                r1.link = rs.getString("link");
+                r1.time = rs.getString("date");
+                r.add(r1);
+            }
+
+            Gson gson = new GsonBuilder().create();
+            String jsonArray = gson.toJson(r);
+            out.write(jsonArray);
+            con.close();
+        } catch (Exception ex) {
+            Logger.getLogger(Notification.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

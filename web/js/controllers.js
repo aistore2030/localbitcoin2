@@ -1314,30 +1314,6 @@ angular.module('mApp.controllers', [])
 
     };
 
-}).controller('SetPasswordController', function ($scope, SetPassword, $state, $stateParams) {
-
-    $scope.x = SetPassword.get({
-        username: $stateParams.username
-    });
-
-
-    console.log($scope.x);
-    $scope.submit = function (x) {
-        x.username = $scope.x.username;
-        console.log(x.username);
-        x.$update(function (msg) {
-            alert(msg.Message);
-            if (msg.Error === true) {
-                $scope.x = SetPassword.get({
-                    username: $stateParams.username
-                });
-            } else {
-                $state.go('AllUser');
-            }
-        });
-
-    };
-
 }).controller('InvoiceController', function ($scope, $http, $interval, invoice, $stateParams) {
     console.log("InvoiceController");
 

@@ -11,6 +11,7 @@ import com.login.Util;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -42,19 +44,42 @@ public class Balance extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Balance</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Balance at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+       
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Double balance = 0.00;
+        
+        Double usdbalance = 0.0;
+        Balance b = new Balance();
+        
+        String bitcoinbalance = "0.00", imobicashbalance = "0.0";
+        currencyconverter c = new currencyconverter();
+        try {
+
+           
+            HttpSession session = request.getSession();
+            String username = String.valueOf(session.getAttribute("username"));
+            String url = request.getRequestURL().toString();
+            URL url1 = new URL(url);
+            String domain = url1.getHost();
+            System.out.println(domain);
+            bitcoinbalance = getBalancecoin(username, "bitcoin", domain);
+
+            Double btc = Double.parseDouble(bitcoinbalance);
+            //System.out.println(btc + "      btc");
+            String aa = c.cur();
+            System.out.println(aa + "      aa");
+
+            usdbalance = Double.parseDouble(aa) * btc;
+            System.out.println(usdbalance + "      usdbalance");
+            b.balance = bitcoinbalance;//String.format("%.7f", bb);
+            b.error = "false";
+            System.out.println(bitcoinbalance);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        out.println("{\"Error\":false,\"balance\": \"" + bitcoinbalance + "\",\"bitcoinbalance\": \"" + bitcoinbalance + "\",\"usdbalance\": \"" + String.format("%.2f", usdbalance) + "\",\"imobicashbalance\": \"" + imobicashbalance + "\"  }");
     }
 
     public String getBalancecoin(String username, String coin, String domain) throws SQLException, Exception {

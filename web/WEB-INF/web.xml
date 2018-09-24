@@ -124,6 +124,22 @@
         <servlet-name>SetGoogleAuth</servlet-name>
         <servlet-class>AngularApi.SetGoogleAuth</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>wallet</servlet-name>
+        <servlet-class>AngularApi.wallet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Transactionhistory</servlet-name>
+        <servlet-class>AngularApi.Transactionhistory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PostTrade</servlet-name>
+        <servlet-class>AngularApi.PostTrade</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.system.LogoutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -247,6 +263,22 @@
     <servlet-mapping>
         <servlet-name>SetGoogleAuth</servlet-name>
         <url-pattern>/SetGoogleAuth</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>wallet</servlet-name>
+        <url-pattern>/wallet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Transactionhistory</servlet-name>
+        <url-pattern>/Transactionhistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostTrade</servlet-name>
+        <url-pattern>/PostTrade</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

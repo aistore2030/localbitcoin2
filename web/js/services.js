@@ -433,14 +433,6 @@ angular.module('mApp.services', [])
         }
     });
 
-}).factory('SetPassword', function ($resource) {
-
-    return $resource('./SetPassword', {id: '@_id'}, {
-        update: {
-            method: 'PUT'
-        }
-    });
-
 }).factory('walletSetting', function ($resource) {
 
     return $resource('./WalletSetting', {id: '@_id'}, {

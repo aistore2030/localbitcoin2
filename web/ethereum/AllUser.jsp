@@ -34,7 +34,7 @@
 
 
             <td> <a ng-click="Suspand(x)" >Suspand</a> | <a ng-click="Verified(x)" >Verified</a> | 
-                <a ng-click="Block(x)" >Block payment</a> | <a ng-click="Delete(x)" >Delete</a> | <a ng-click="resetGoogleAuth(x)" >Remove Google Auth</a> | <a ui-sref="CreditToUser({username:x.email})" >Credit</a> | <a ui-sref="DebitToUser({username:x.email})" >Debit</a> | <a ui-sref="SetPassword({username:x.email})" >Set Password</a> 
+                <a ng-click="Block(x)" >Block payment</a> | <a ng-click="Delete(x)" >Delete</a> | <a ng-click="resetGoogleAuth(x)" >Remove Google Auth</a> | <a ui-sref="CreditToUser({username:x.email})" >Credit</a> | <a ui-sref="DebitToUser({username:x.email})" >Debit</a> 
 
             </td>
         </tr>
