@@ -197,12 +197,13 @@ public class PendingAnswer extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+        try (Connection con = Util.getConnection();
+            Statement st = con.createStatement();){
             System.out.println(451);
             response.setContentType("application/json;charset=UTF-8");
-            Connection con = null;
+           
             PrintWriter out = response.getWriter();
-            Statement st = null;
+           
             HttpSession session = request.getSession();
 
             BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
@@ -213,8 +214,7 @@ public class PendingAnswer extends HttpServlet {
 
             JSONObject jsonObj = new JSONObject(json);
             System.out.println(json + 49);
-            con = Util.getConnection();
-            st = con.createStatement();
+            
 
             String id = jsonObj.getString("id");
             System.out.println(id);

@@ -44,20 +44,19 @@ public class Balance extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         Double balance = 0.00;
-        
+
         Double usdbalance = 0.0;
         Balance b = new Balance();
-        
+
         String bitcoinbalance = "0.00", imobicashbalance = "0.0";
         currencyconverter c = new currencyconverter();
         try {
 
-           
             HttpSession session = request.getSession();
             String username = String.valueOf(session.getAttribute("username"));
             String url = request.getRequestURL().toString();
@@ -145,13 +144,12 @@ public class Balance extends HttpServlet {
     public Balance getBalance(String username, String domain) throws SQLException, Exception {
         System.out.println("Balance");
         Double balance = 0.00;
-        Connection con = null;
-        Statement st = null;
+
         Gson gson = new GsonBuilder().create();
         Balance b = new Balance();
-        try {
-            con = Util.getConnection();
-            st = con.createStatement();
+        try (Connection con = Util.getConnection();
+                Statement st = con.createStatement();) {
+
             String query = "";
             String bitcoinbalance = getBalancecoin(username, "bitcoin", domain);
             System.out.println(bitcoinbalance);

@@ -50,8 +50,8 @@ public class Support_Ticket extends HttpServlet {
         PrintWriter out = response.getWriter();
         String cs = "";
 
-        try  {
-            
+        try {
+
             cs = request.getParameter("case");
             System.out.println(cs + "57");
             if (cs != null && !cs.trim().equalsIgnoreCase("")) {
@@ -62,10 +62,9 @@ public class Support_Ticket extends HttpServlet {
             cs = "";
             System.out.println(70);
         }
-        try(Connection con = Util.getConnection();
-            Statement st = con.createStatement();) {
+        try (Connection con = Util.getConnection();
+                Statement st = con.createStatement();) {
 
-           
             ResultSet rs;
             int i;
             int h;
@@ -80,7 +79,6 @@ public class Support_Ticket extends HttpServlet {
             System.out.println(i + "adminid");
             String id = null;
 
-
             PreparedStatement stmt;
             String q = "";
 
@@ -91,8 +89,7 @@ public class Support_Ticket extends HttpServlet {
             } else if (cs.equals("closedticket")) {
                 q = "select * from support_ticket where status='Disable'";
                 System.out.println(q);
-            } 
-            else {
+            } else {
                 if (i > 9) {
                     q = "select * from  support_ticket  order by update_time desc limit 0, 50 ";
                 } else {
@@ -111,14 +108,13 @@ public class Support_Ticket extends HttpServlet {
 
             while (rs.next()) {
                 Support_Ticket a1 = new Support_Ticket();
-                
+
                 a1.id = rs.getString("id");
                 a1.username = rs.getString("username");
 
                 a1.subject = rs.getString("subject");
                 a1.message = rs.getString("message");
                 a1.status = rs.getString("status");
-                
 
                 a.add(a1);
             }
@@ -126,7 +122,6 @@ public class Support_Ticket extends HttpServlet {
             String jsonArray = gson.toJson(a);
             System.out.println(jsonArray);
             out.write(jsonArray);
-            
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -136,22 +131,20 @@ public class Support_Ticket extends HttpServlet {
     protected void SaveMessage(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
-       
-        HttpSession session = request.getSession();
-        
-        ResultSet rs;
 
+        HttpSession session = request.getSession();
+
+        ResultSet rs;
 
         PrintWriter out = response.getWriter();
 
         String json = "";
 
-         try (Connection con = Util.getConnection();
-            Statement st = con.createStatement();) {
-            
-            
+        try (Connection con = Util.getConnection();
+                Statement st = con.createStatement();) {
+
             BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
-           
+
             username = String.valueOf(session.getAttribute("username"));
             String Mobile = String.valueOf(session.getAttribute("mobile"));
             System.out.println("username--" + username);
@@ -229,32 +222,28 @@ public class Support_Ticket extends HttpServlet {
     protected void ReplyRequest(HttpServletRequest request, HttpServletResponse response, String json)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
-        Connection con = null;
-        Statement st = null;
+
         PrintWriter out = response.getWriter();
 
-        try {
+        try (Connection con = Util.getConnection();
+                Statement st = con.createStatement();) {
 
-            
             JSONObject jsonObj = new JSONObject(json);
-            
-            con = Util.getConnection();
-            st = con.createStatement();
+
             System.out.println(json + 22);
-            
+
             String q = "";
             HttpSession session = request.getSession();
-            
+
             String username = String.valueOf(session.getAttribute("username")).trim();
             String mobile = String.valueOf(session.getAttribute("mobile")).trim();
             System.out.println(username);
             String roll = String.valueOf(session.getAttribute("roll")).trim();
             System.out.println(roll);
 
-                id = jsonObj.getString("id");
-                res = jsonObj.getString("response");
-                System.out.println(id+res);
-           
+            id = jsonObj.getString("id");
+            res = jsonObj.getString("response");
+            System.out.println(id + res);
 
             String query = "insert into ticket_response(username,ticket_id,msg_response,roll)values ('" + username + "', "
                     + "'" + id + "','" + res + "','" + roll + "') ";
@@ -274,7 +263,7 @@ public class Support_Ticket extends HttpServlet {
             }
 
         } catch (Exception e) {
-            out.println("{\"Error\": true,\"Message\": \""+e.getMessage()+"\" }");
+            out.println("{\"Error\": true,\"Message\": \"" + e.getMessage() + "\" }");
         }
     }
 
@@ -310,14 +299,15 @@ public class Support_Ticket extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+        try (Connection con = Util.getConnection();
+                Statement st = con.createStatement();) {
             System.out.println(451);
             response.setContentType("application/json;charset=UTF-8");
-            Connection con = null;
+
             PrintWriter out = response.getWriter();
-            Statement st = null;
+
             HttpSession session = request.getSession();
-            
+
             String mobile = String.valueOf(session.getAttribute("mobile"));
             String username = String.valueOf(session.getAttribute("username"));
             BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
@@ -328,8 +318,7 @@ public class Support_Ticket extends HttpServlet {
 
             JSONObject jsonObj = new JSONObject(json);
             System.out.println(json + 49);
-            con = Util.getConnection();
-            st = con.createStatement();
+
             System.out.println(467);
             String id = jsonObj.getString("id");
             System.out.println(id);
@@ -340,8 +329,7 @@ public class Support_Ticket extends HttpServlet {
                 ReplyRequest(request, response, json);
                 System.out.println(388);
             } else if (case1.equals("Enable")) {
-                con = Util.getConnection();
-                st = con.createStatement();
+
                 System.out.println("359");
                 PreparedStatement stmt = con.prepareStatement("update support_ticket set status=?   where id=? ");
 
@@ -360,9 +348,6 @@ public class Support_Ticket extends HttpServlet {
                     System.out.println("{\"Error\":true ,\"Message\": \"Some Error\" }");
                 }
             } else {
-
-                con = Util.getConnection();
-                st = con.createStatement();
 
                 PreparedStatement stmt = con.prepareStatement("update support_ticket set status=?   where id=?");
 
