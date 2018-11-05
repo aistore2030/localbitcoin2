@@ -68,7 +68,7 @@ public class AddBitaddress extends HttpServlet {
             if (rs.next()) {
                 insertID = rs.getInt(1);
             }
-            String urlen = "http://" + domain + "/ReceivingCallBack?address_id=" + insertID;
+            String urlen = "https://" + domain + "/ReceivingCallBack?address_id=" + insertID;
 
             System.out.println(urlen);
             String encodeURL = URLEncoder.encode(urlen, "UTF-8");
@@ -91,7 +91,7 @@ public class AddBitaddress extends HttpServlet {
 
             u = "https://api.blockchain.info/v2/receive?xpub=" + aa + "&callback=" + encodeURL + "&key="+api_code+"&gap_limit="+gap_limit;
 
-            System.out.println(u);
+            System.out.println(u+"uuuuu");
             String output1 = w.wget(u);
             System.out.println(output1);
             System.out.println(output1);
@@ -101,10 +101,13 @@ public class AddBitaddress extends HttpServlet {
             try {
                 query = "update bitcoinaddress set bitcoin_public_key='" + aa + "',"
                         + " bitcoin_private_key='None',"
-                        + "  bit_address='" + address1 + "' where id='"+insertID+"'";
+                        + "  bit_address='" + address1 + "' ,url='"+u+"' where id='"+insertID+"'";
                 System.out.println(query);
 
                 st.executeUpdate(query);
+                if(i>0){
+                    out.println(query);
+                }
             } catch (SQLException e) {
 
                 System.out.println(e.getMessage());
@@ -112,7 +115,7 @@ public class AddBitaddress extends HttpServlet {
             }
 
             //setNewAddress(st, username, domain);
-            System.out.println(i);
+            //System.out.println(i);
         } catch (Exception ex) {
             Logger.getLogger(AddBitaddress.class.getName()).log(Level.SEVERE, null, ex);
         }

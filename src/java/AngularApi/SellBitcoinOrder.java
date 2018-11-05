@@ -76,7 +76,7 @@ public class SellBitcoinOrder extends HttpServlet {
             String domain = url1.getHost();
             String query = "";
             query = "select r.name,t.* from trade_transaction t,register r "
-                    + "where t.id=" + id + " and t.domain='" + domain + "' and t.username=r.username order by id desc  ";
+                    + "where t.id=" + id + "  and t.username=r.username order by id desc  ";
 
             System.out.println(query);
             ResultSet rs = st.executeQuery(query);

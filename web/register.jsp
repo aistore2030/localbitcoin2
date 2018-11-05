@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="form-actions">
-                        <div class="g-recaptcha" data-sitekey="6Lc4Z3YUAAAAAMIAc6cExk_kTWnMfYSgXvqq70EO"></div>
+                        <div class="g-recaptcha" data-sitekey="6Lfaf3gUAAAAAGy7zjTRqAj8fEv4YD7mvz3HQ5ya"></div>
                         <button type="submit" id="register-submit-btn" class="btn btn-success uppercase  ">Register</button>
                         <br ><br >
                         <p>already have an account? <a href="login.jsp"> Log in</a><br >
@@ -61,3 +61,4 @@
                     </div>
                 </form>
             </div></div></div></div>
+                <%@ include file="ifooter.jsp" %>

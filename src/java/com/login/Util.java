@@ -15,13 +15,13 @@ import java.sql.DriverManager;
 public class Util {
 
     static final String URL = "jdbc:mysql://localhost:3306/";
-    static final String DATABASE_NAME = "hdwallet";
+    static final String DATABASE_NAME = "newhdwallet";
     static final String USERNAME = "root";
 
     //static final String PASSWORD = "This@#1234";
-   static final String PASSWORD = "malasingh";
+    //static final String PASSWORD = "malasingh";
+    static final String PASSWORD = "Local@#1212";
 
-    ////// static final String PASSWORD = "zaI4!@#$%dkdkTsmHw";
     public static Connection getConnection() throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(URL + DATABASE_NAME, USERNAME, PASSWORD);

@@ -21,7 +21,7 @@
     </thead>
 
     <tbody>
-        <tr ng-repeat="x in myTxt">
+        <tr ng-repeat="x in myTxt">nghhhhhhhhhhhhh
             <td>{{x.id}}</td>
             <td><a ui-sref="PublicProfile({username:x.username})">{{x.name}}</a></td>
             <td >{{x.price}} USD</td>

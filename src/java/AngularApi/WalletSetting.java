@@ -35,6 +35,7 @@ public class WalletSetting extends HttpServlet {
     private String public_key;
     private String gap_limit;
     private String api_code;
+    private String from;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -69,14 +70,16 @@ public class WalletSetting extends HttpServlet {
             String wallet_password = String.valueOf(jsonObj.getString("password")).trim();
             String fee = String.valueOf(jsonObj.getString("fee")).trim();
             String guid = String.valueOf(jsonObj.getString("guid")).trim();
+            String from = String.valueOf(jsonObj.getString("from")).trim();
            
             if (roll == 10) {
-                String query = "insert into wallet_setting (username,guid,fee,wallet_password,wallet_index,public_key,api_code,gap_limit)"
+                String query = "insert into wallet_setting (username,guid,fee,wallet_password,wallet_index,public_key,api_code,gap_limit,fromaddress)"
                         + " values('" + username + "','" + guid + "','" + fee + "','" + wallet_password + "','" + wallet_index + "'"
-                        + ",'" + public_key + "','" + api_code + "','" + gap_limit + "')"
+                        + ",'" + public_key + "','" + api_code + "','" + gap_limit + "','" + from + "')"
                         + "on duplicate key update guid='" + guid + "',fee='" + fee + "',wallet_password='" + wallet_password + "',"
                         + "wallet_index='" + wallet_index + "',public_key='" + public_key + "',api_code='" + api_code + "'"
-                        + ",gap_limit='" + gap_limit + "'";
+                        + ",gap_limit='" + gap_limit + "',fromaddress='" + from + "'";
+                System.out.println(query);
                 int i = st.executeUpdate(query);
                 if (i > 0) {
                     out.println("{\"Error\":false,\"Message\":\"Success\"}");
@@ -111,6 +114,7 @@ public class WalletSetting extends HttpServlet {
                     w.public_key = rs.getString("public_key");
                     w.api_code = rs.getString("api_code");
                     w.gap_limit = rs.getString("gap_limit");
+                    w.from = rs.getString("fromaddress");
                     
            
                 }

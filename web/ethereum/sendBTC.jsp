@@ -41,6 +41,10 @@
                 <label  >Gap limit : </label>
                 <input class="form-control"  type="text"  ng-model="x.gap_limit" required/>
             </div>
+             <div class="form-group">
+                <label  >From(Address) : </label>
+                <input class="form-control"  type="text"  ng-model="x.from" required/>
+            </div>
             
             <h3>Blockchain API Code</h3>
             

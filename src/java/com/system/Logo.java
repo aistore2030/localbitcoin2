@@ -34,7 +34,7 @@ public class Logo {
             URL url1 = new URL(url);
             String host = url1.getHost();
 
-            String query = "select * from logo  where  domain ='" + host + "'  ";
+            String query = "select * from logo  ";
             System.out.println(query);
             ResultSet rs = st.executeQuery(query);
             if (rs.next()) {

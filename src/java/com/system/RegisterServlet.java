@@ -84,7 +84,10 @@ public class RegisterServlet extends HttpServlet {
                       address_id = rs.getString("id");
 
                     try {
-                        query = "insert into depositaddress set  username='" + username + "' ,bitcoin='" + Address + "' ,address_id='"+address_id+"' ,bitcoin_public_key='"+bitcoin_public_key+"'";
+                        query = "insert into depositaddress set  username='" + username + "' ,bitcoin='" + Address + "' ,address_id='"+address_id+"' ,"
+                                + "bitcoin_public_key='"+bitcoin_public_key+"',bitcoin_private_key='None',archived_status='false',receiveAccount='a',"
+                                + "changeAccount='a',bitcoin2='2',bitcoin3='3',bitcoin_public_key2='0',bitcoin_private_key2='0',bitcoin_public_key3='1',"
+                                + "bitcoin_private_key3='1'";
                         System.out.println(query);
 
                         st.executeUpdate(query);

@@ -30,11 +30,11 @@
                         <label class="control-label visible-ie8 visible-ie9">Password</label>
                         <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" /> </div>
                     <div class="form-actions">
-                        <div class="g-recaptcha" data-sitekey="6Lc4Z3YUAAAAAMIAc6cExk_kTWnMfYSgXvqq70EO"></div>
+                        <div class="g-recaptcha" data-sitekey="6Lfaf3gUAAAAAGy7zjTRqAj8fEv4YD7mvz3HQ5ya"></div>
                         <button type="submit" class="btn btn-primary   uppercase">Log in</button>
 
 
-                        <p> New to Trading App?  <a href="register.jsp"> Sign up now"!</a><br >   
+                        <p> New to Trading App?  <a href="register.jsp"> Sign up now!</a><br >   
                             <br >
                             Forgot password?  <a href="forget.jsp">Reset your password</a><br ><br >
                         </p>
@@ -47,3 +47,4 @@
         </div>
     </div>
 </div>
+<%@ include file="ifooter.jsp" %>

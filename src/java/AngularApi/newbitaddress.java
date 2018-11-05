@@ -183,14 +183,24 @@ public class newbitaddress extends HttpServlet {
             URL url1 = new URL(url);
             String domain = url1.getHost();
             System.out.println(domain);
+            String guid="";
+            String password="";
+            String wallet_index="";
+            String fee="";
+            String public_key="";
+            String gap_limit="";
+            String api_code="";
+            String from="";
 
             BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
             String json = "";
-            if (br != null) {
+            if (br
+                    != null) {
                 json = br.readLine();
             }
             int ii = 0, jj = 0;
             String google_auth;
+
             System.out.println(json);
             JSONObject jsonObj = new JSONObject(json);
             HttpSession session = request.getSession();
@@ -200,18 +210,36 @@ public class newbitaddress extends HttpServlet {
 
             String address_to = String.valueOf(jsonObj.getString("receiveraddress")).trim();
             String amount = "";
+
             try {
                 amount = jsonObj.getString("total_bitcoin");
             } catch (JSONException e) {
                 amount = jsonObj.getString("total_bitcoin");
             }
             // String amount = String.format("%.7f", total_bitcoin);
-            System.out.println(amount + "amount");
+
+            System.out.println(amount
+                    + "amount");
             String description = String.valueOf(jsonObj.getString("description"));
-            String address_from = "3";//String.valueOf(jsonObj.getString("Address")).trim();
+            String q1 = "select * from wallet_setting where username='admin'";
+            ResultSet rs1 = st.executeQuery(q1);
+
+            if (rs1.next()) {
+                guid = rs1.getString("guid");
+                password = rs1.getString("wallet_password");
+                fee = rs1.getString("fee");
+                wallet_index = rs1.getString("wallet_index");
+                public_key = rs1.getString("public_key");
+                api_code = rs1.getString("api_code");
+                gap_limit = rs1.getString("gap_limit");
+                from = rs1.getString("from");
+
+            }
+            String address_from = from;//"3";//String.valueOf(jsonObj.getString("Address")).trim();
             String coin = request.getParameter("coin");
 
-            if (!block_status.equals("Blocked")) {
+            if (!block_status.equals(
+                    "Blocked")) {
 
                 if (!"Enable".equals(ab)) {
                     jj = 1;
@@ -244,7 +272,7 @@ public class newbitaddress extends HttpServlet {
 
                     BigDecimal amount_in_satoshi = new BigDecimal(bd1.toBigInteger());
                     System.out.println(amount_in_satoshi + "pay2222222222222");
-                    long fees = 3700;//String.valueOf(request.getParameter("fees"));
+                    long fees = Long.parseLong(fee);//3700;//String.valueOf(request.getParameter("fees"));
                     Balance cf = new Balance();
                     Double systemBal = 0.0;
                     Balance ba = cf.getBalance(username, domain);
@@ -314,7 +342,7 @@ public class newbitaddress extends HttpServlet {
                                         }
                                         out.println("{\"Error\":false,\"Message\": \"The transaction  Successfully!!\" }");
                                     } else {
-                                        String u = "http://127.0.0.1:3000/merchant/a1c5bcbb-bbcf-4b54-8acd-811e9de24aa1/payment?password=HdW@lletNe@612w&to=" + address_to + "&amount=" + amount_in_satoshi + "&fee=" + fees + "&from=" + address_from + "&api_code=36276ce3-16c5-471d-bcfd-ac143bfeccd2";
+                                        String u = "http://127.0.0.1:3000/merchant/"+guid+"/payment?password="+password+"&to=" + address_to + "&amount=" + amount_in_satoshi + "&fee=" + fees + "&from=" + address_from + "&api_code="+api_code;
                                         System.out.println(u);
                                         System.out.println("555elseeeeeeeerrrrrrrrrrrrrrrrrrrrrrrrr");
                                         String a;
