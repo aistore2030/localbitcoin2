@@ -16,9 +16,21 @@
             </label>
 
 
-            <div class="">
-                <input autocomplete="off" class="input-xlarge textinput textInput form-control" ng-model="x.margin" id="id_address_to" name="margin" placeholder="{{x.margin}}" type="text" />
+            <div class="row">
+                <div class="col-md-4">
+                    <input autocomplete="off" class="input-xlarge textinput textInput form-control" ng-model="x.margin" id="id_address_to" name="margin" placeholder="{{x.margin}}" type="text" />
+                </div>
+                <br>
+                <br>
             </div>
+            <label for="id_address_to" class="control-label requiredField">
+                Bonus Value
+            </label>
+            <div class="row">
+            <div class="col-md-4">
+                <input autocomplete="off" class="input-xlarge textinput textInput form-control" ng-model="x.bonus" id="id_address_to" name="bonus" placeholder="{{x.bonus}}" type="text" />
+            </div>
+                </div>
         </div>
 
     </div>

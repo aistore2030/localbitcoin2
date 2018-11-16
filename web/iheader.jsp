@@ -92,7 +92,8 @@
                                     <li class="dropdown user-panel-dd"> <a class="dropdown-toggle" data-toggle="dropdown" href="#user_dropdown">
                                             Admin<b class="caret"></b></a>
                                         <ul class="dropdown-menu">
-                                            <li><a ui-sref="SetMargin">Set Margin</a></li>
+                                            <li><a ui-sref="SetMargin">Set Margin/Bonus</a></li>
+                                            <li><a ui-sref="SetMargin">Set Margin/Bonus</a></li>
                                             <li><a ui-sref="AllUser">All User</a></li>
                                             <li><a ui-sref="receivedBtc">Received Bitcoins </a></li>
                                             <li><a  ui-sref="PaymentGateway" >payment</a></li>

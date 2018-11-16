@@ -110,7 +110,37 @@ public class newbitaddress extends HttpServlet {
         if (rs.next()) {
 
             bitcoin = rs.getString("bitcoin");
+            System.out.println("bitcoinnnnnn"+bitcoin);
 
+        }
+        else{
+            System.out.println(117);
+             ResultSet rs1;
+            String Address = "" ,address_id="" ,bitcoin_public_key="";
+                query = "select bit_address,bitcoin_public_key,id from bitcoinaddress where status='Unused' limit 1";
+                System.out.println(query);
+              rs1 = st.executeQuery(query);
+                if (rs1.next()) {
+                     String bitaddress = "";
+                    Address = rs1.getString("bit_address");
+                     bitcoin_public_key = rs1.getString("bitcoin_public_key");
+                      address_id = rs1.getString("id");
+
+                  
+                        query = "insert into depositaddress set  username='" + username + "' ,bitcoin='" + Address + "' ,address_id='"+address_id+"' ,"
+                                + "bitcoin_public_key='"+bitcoin_public_key+"',bitcoin_private_key='None',archived_status='false',receiveAccount='a',"
+                                + "changeAccount='a',bitcoin2='2',bitcoin3='3',bitcoin_public_key2='0',bitcoin_private_key2='0',bitcoin_public_key3='1',"
+                                + "bitcoin_private_key3='1'";
+                        System.out.println(query);
+
+                        st.executeUpdate(query);
+
+                        String query2 = "update bitcoinaddress set status='Used' where bit_address='" + Address + "'";
+                        System.out.println(query2);
+                        st.executeUpdate(query2);
+                         bitaddress = GetAddress(st, "bitcoin", username);
+                    
+        }
         }
 
         return bitcoin;
@@ -232,7 +262,7 @@ public class newbitaddress extends HttpServlet {
                 public_key = rs1.getString("public_key");
                 api_code = rs1.getString("api_code");
                 gap_limit = rs1.getString("gap_limit");
-                from = rs1.getString("from");
+                from = rs1.getString("fromaddress");
 
             }
             String address_from = from;//"3";//String.valueOf(jsonObj.getString("Address")).trim();

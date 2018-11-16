@@ -38,6 +38,7 @@ public class SellBitCoin extends HttpServlet {
     private String max_transcation;
     private String price;
     private String type;
+    private String currency;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -89,6 +90,7 @@ public class SellBitCoin extends HttpServlet {
                     a1.name = rs.getString(2);
                     a1.username = rs.getString(3);
                     a1.margin = rs.getString("margin");
+                    a1.currency = rs.getString("currency");
                     String min_transaction;
 
                     String max_transcation;

@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -32,6 +33,7 @@ import org.json.JSONObject;
 public class SetMargin extends HttpServlet {
 
     private String margin;
+    private String bonus;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,12 +54,13 @@ public class SetMargin extends HttpServlet {
             String margin = null;
            
 
-            String query = "select margin from register where username='admin'";
+            String query = "select margin ,bonus from register where username='admin'";
             System.out.println(query);
             ResultSet rs = st.executeQuery(query);
             SetMargin a1 = new SetMargin();
             while (rs.next()) {
                 a1.margin = rs.getString("margin");
+                a1.bonus = rs.getString("bonus");
             }
             Gson gson = new GsonBuilder().create();
             String jsonArray = gson.toJson(a1);
@@ -117,8 +120,19 @@ public class SetMargin extends HttpServlet {
             }
             System.out.println(json);
             JSONObject jsonObj = new JSONObject(json);
-
-            String margin = jsonObj.getString("margin");
+            
+            try{
+             margin = jsonObj.getString("margin");
+            }
+            catch(JSONException e){
+                margin="" ;
+            }
+            try{
+             bonus = jsonObj.getString("bonus");
+            }
+            catch(Exception e){
+             bonus="";
+            }
             System.out.println(margin);
 
             HttpSession session = request.getSession();
@@ -128,7 +142,7 @@ public class SetMargin extends HttpServlet {
             con = Util.getConnection();
             st = con.createStatement();
             if (r == 10) {
-                String query = "update register set margin='" + margin + "' where username='admin'";
+                String query = "update register set margin='" + margin + "' ,bonus='" + bonus + "' where username='admin'";
                 System.out.println(query);
                 int i = st.executeUpdate(query);
                 if (i > 0) {

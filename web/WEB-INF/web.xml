@@ -152,6 +152,14 @@
         <servlet-name>ReceivingCallBack</servlet-name>
         <servlet-class>AngularApi.ReceivingCallBack</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RetryAddress</servlet-name>
+        <servlet-class>com.function.RetryAddress</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Bonus</servlet-name>
+        <servlet-class>AngularApi.Bonus</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -303,6 +311,14 @@
     <servlet-mapping>
         <servlet-name>ReceivingCallBack</servlet-name>
         <url-pattern>/ReceivingCallBack</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RetryAddress</servlet-name>
+        <url-pattern>/RetryAddress</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Bonus</servlet-name>
+        <url-pattern>/Bonus</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

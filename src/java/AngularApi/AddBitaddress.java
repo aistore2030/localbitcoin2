@@ -9,22 +9,18 @@ import com.login.Util;
 import com.system.Wget;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
