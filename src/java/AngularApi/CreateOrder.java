@@ -65,7 +65,7 @@ public class CreateOrder extends HttpServlet {
             Double bitvalue = Double.parseDouble(jsonObj.getString("ask"));
             Double am = Double.parseDouble(amount) / bitvalue;
             
-            if (username.equals("admin")) {
+            if (username.equals("irsantana@msn.com")) {
                 q = "insert into transactions(coin,username,description,fees,cr,dr,trstatus ,transaction_type,domain) values "
                         + "('bitcoin','" + username + "','" + description + "','" + fees + "','" + am + "','0','Pending','Deposit','" + domain + "')";
                 System.out.println(q);

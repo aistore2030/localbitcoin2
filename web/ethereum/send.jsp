@@ -4,8 +4,8 @@
 
 <a class="btn btn-primary  btn-sm"  ui-sref="Wallet">Transactions</a></div> 
 
-<%String block_status=String.valueOf(session.getAttribute("block_status"));
- 
+<%String block_status = String.valueOf(session.getAttribute("block_status"));
+
 %>
 
 <h2>Wallet transactions</h2>
@@ -38,18 +38,37 @@
                 <label for="description">Description </label>
                 <textarea class="form-control" rows="2" cols="50" type="text" ng-model="x.description"   required></textarea>
             </div>
-            <div class="form-group">
-                <label for="description">Amount in USD</label>
-                <input autocomplete="off" class="form-control" id="amountinput" ng-change="BTCUSD(x)" ng-model="x.amount" name="amount" placeholder="0.00"  type="text" />
-            </div>
-            <div class="form-group">
-                <%if(block_status.equals("Blocked")){%>
-                <input type="button" ng-click="Submit(x)" class="btn btn-success" value="submit" disabled/>
-                <%}else{%>
-                <input type="button" ng-click="Submit(x)" class="btn btn-success" value="submit" /><%}%>
-            </div>
+            <div class="form-group"> 
+                <label for="description">Amount</label>
+                <div class="row">
+                <div class="col-md-6">
+                    
+                        
+                        <input autocomplete="off" class="form-control" id="amountinput"  ng-model="x.amount" name="amount" placeholder="0.00"  type="text" />
+                   
+                </div>
+                <div class="col-md-3">
+                   <select class="form-control"  ng-model="x.currency" name="currency" ng-change="BTCUSD(x)" >
+                        <option ng-repeat="currenc in curr" ng-selected="currency===currenc.name" value="{{currenc.code}}">
+                            {{currenc.name}}
+                        </option>
+                    </select>
+                    
+                </div>
+                    <div class="col-md-3"></div>
+            </div></div>
+          
+   
+    <div class="form-group">
+        <%if (block_status.equals("Blocked")) {%>
+        <input type="button" ng-click="Submit(x)" class="btn btn-success" value="submit" disabled/>
+        <%} else {%>
+        <input type="button" ng-click="Submit(x)" class="btn btn-success" value="submit" /><%}%>
+    </div>
 
-        </form>
+</form>
+     </div>
+     </div>
 
 
 
@@ -57,7 +76,7 @@
 
 
 
-    </div></div> 
+</div></div> 
 
 
 

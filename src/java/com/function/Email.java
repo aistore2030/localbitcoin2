@@ -69,9 +69,9 @@ public String EmailFooter() {
         String encoding = "UTF-8";
 
         String data = "apikey=" + URLEncoder.encode("a515c9ec-0156-42d4-a4aa-244400db4a22", encoding);
-        data += "&from=" + URLEncoder.encode("sakshamappinternational@gmail.com", encoding);
+        data += "&from=" + URLEncoder.encode("irsantana@msn.com", encoding);
        
-        data += "&fromName=" + URLEncoder.encode(message_email[0], encoding);
+        data += "&fromName=" + URLEncoder.encode("Trade App", encoding);
       
         data += "&subject=" + URLEncoder.encode(message_email[1], encoding);
        

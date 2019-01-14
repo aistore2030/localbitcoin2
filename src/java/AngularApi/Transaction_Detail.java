@@ -58,7 +58,7 @@ public class Transaction_Detail extends HttpServlet {
             HttpSession session = request.getSession();
             String username = String.valueOf(session.getAttribute("username")).trim();
             
-            if (username.equals("admin")) {
+            if (username.equals("irsantana@msn.com")) {
                 query = "select * from transactiondetail  where  confirmations <=5 order by id desc";
             } else {
                 query = "select * from transactiondetail where username  ='" + username + "' and confirmations < 5 order by id desc ";

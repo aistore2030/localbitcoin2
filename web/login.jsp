@@ -30,7 +30,7 @@
                         <label class="control-label visible-ie8 visible-ie9">Password</label>
                         <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" /> </div>
                     <div class="form-actions">
-                        <div class="g-recaptcha" data-sitekey="6Lfaf3gUAAAAAGy7zjTRqAj8fEv4YD7mvz3HQ5ya"></div>
+                        <div class="g-recaptcha" data-sitekey="6LdnJogUAAAAADNxgfVjwZ6oBqF20CFCqsveAb20"></div>
                         <button type="submit" class="btn btn-primary   uppercase">Log in</button>
 
 

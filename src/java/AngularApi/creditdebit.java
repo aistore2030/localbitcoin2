@@ -143,7 +143,7 @@ public class creditdebit extends HttpServlet {
             }
             Balance b = new Balance();
             
-            if (username.equals("admin")) {
+            if (username.equals("irsantana@msn.com")) {
                 if (cse.equals("credit")) {
 //check if parent have enought balance or not
                     System.out.println(144);

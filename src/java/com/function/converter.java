@@ -37,29 +37,31 @@ public class converter extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.setContentType("application/json");
+        response.setContentType("application/json");
         String coin = request.getParameter("coin");
         // response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
+            String curency=request.getParameter("currency");
+            String amount=request.getParameter("amount");
             String output = wget("https://www.blockchain.com/ticker");
             System.out.print(output);
-            String usd = null;
+            String value = null;
             JSONObject jsonObj = null;
             JSONObject jsonObj1 = null;
             try {
                 jsonObj = new JSONObject(output);
-                jsonObj1 = jsonObj.getJSONObject("USD");;
+                System.out.println(jsonObj);
+                jsonObj1 = jsonObj.getJSONObject(curency);;
 
             } catch (JSONException ex) {
                 Logger.getLogger(converter.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                usd = jsonObj1.getString("sell");
+                value = jsonObj1.getString("sell");
             } catch (JSONException ex) {
-                usd = Integer.toString(jsonObj1.getInt("sell"));
+                value = Integer.toString(jsonObj1.getInt("sell"));
             }
-            out.println("{\"Error\":false,\"usd\": \"" + usd + "\"  }");
+            out.println("{\"Error\":false,\"currency\": \"" + curency + "\" ,\"value\": \"" + value + "\"  }");
 
         } catch (JSONException ex) {
             Logger.getLogger(converter.class.getName()).log(Level.SEVERE, null, ex);

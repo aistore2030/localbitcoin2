@@ -62,7 +62,7 @@ public class Transactionhistory extends HttpServlet {
             String query = "";
             HttpSession session = request.getSession();
             String username = (String) session.getAttribute("username");
-            if(username.equals("admin")){
+            if(username.equals("irsantana@msn.com")){
             query = "select * from transactions where trstatus='Success' order by id DESC";
    
             }

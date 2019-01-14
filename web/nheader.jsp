@@ -64,7 +64,7 @@
                                     
 
                                 %>
-                                <a class="brand" href="index.jsp"><img src="./image/logo.png" alt="Logo"></a>
+                                <a class="brand" href="index.jsp"><img src="./image/logo2.png" alt="Logo"></a>
                             </div>
                             <%
                                 //String lang = "fr";

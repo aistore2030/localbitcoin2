@@ -126,12 +126,20 @@ angular.module('mApp.controllers', [])
             $scope.myTxt = AllTrade.query();
         });
     };
-}).controller('SellBitCoinController', function ($scope, SellBitCoin) {
+}).controller('SellBitCoinController', function ($scope, SellBitCoin,PostTrade,BuyBitCoinfilter) {
     console.log("SellBitCoinController");
     $scope.myTxt = SellBitCoin.query();
-}).controller('BuyBitCoinController', function ($scope, $http, $window, $interval, BuyBitCoin) {
+    $scope.curr = PostTrade.query();
+     $scope.Search = function (x) {
+      $scope.myTxt = BuyBitCoinfilter.query({cs:'Buy_bitcoin',currency:x.currency});
+    };
+}).controller('BuyBitCoinController', function ($scope, PostTrade, BuyBitCoin,BuyBitCoinfilter) {
     console.log("BuyBitCoinController");
     $scope.myTxt = BuyBitCoin.query();
+    $scope.curr = PostTrade.query();
+     $scope.Search = function (x) {
+      $scope.myTxt = BuyBitCoinfilter.query({cs:'Sell_bitcoin',currency:x.currency});
+    };
 
 
 }).controller('SellBitcoinOrderController', function ($scope, $stateParams, SellBitcoinOrder, $http, $state) {
@@ -750,23 +758,34 @@ angular.module('mApp.controllers', [])
 
     };
 
-}).controller('SendBTCController', function ($scope, $http, btc, $state) {
+}).controller('SendBTCController', function ($scope, $http,PostTrade,converter, btc, $state) {
     $scope.x = btc.get();
 
     $scope.y = btc.get();
-
+$scope.curr = PostTrade.query();
+console.log($scope.curr);
     $scope.BTCUSD = function (x) {
-        console.log(284);
-        $http.get("converter").then(function (response) {
-            $scope.ab = response.data.usd;
-            $scope.x.total_bitcoin = ($scope.x.amount / response.data.usd).toFixed(6);
+        var currency=x.currency;
+        var amount=x.amount;
+        //alert(currency+amount);
+        $http.get("converter?currency="+currency+"&amount="+amount).then(function (response) {
+            $scope.ab = response.data.value;
+            console.log($scope.ab+"111111111111111");
+           //$scope.data = converter.query({currency:currency});
+           console.log($scope.ab.currency+"111111111111111");
+            $scope.x.total_bitcoin = ($scope.x.amount / $scope.ab).toFixed(6);
 
         });
     };
     $scope.USDBTC = function (x) {
-        $http.get("converter").then(function (response) {
-            $scope.ab = response.data.usd;
-            $scope.x.amount = $scope.x.total_bitcoin * response.data.usd;
+        //var currency=x.currency;
+        var amount=x.amount;
+        $http.get("converter?currency=USD&amount="+amount).then(function (response) {
+            $scope.ab = response.data.value;
+            $scope.x.amount = $scope.x.total_bitcoin * $scope.ab;
+            $scope.x.currency="US Dollar";
+            $scope.currency="US Dollar";
+             console.log($scope.ab+"111111111111111"+$scope.x.currency+$scope.x.amount);
         });
     };
     $scope.Submit = function (y) {

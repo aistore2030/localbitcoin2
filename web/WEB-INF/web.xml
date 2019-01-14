@@ -160,6 +160,10 @@
         <servlet-name>Bonus</servlet-name>
         <servlet-class>AngularApi.Bonus</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SellBitCoin_Filter</servlet-name>
+        <servlet-class>AngularApi.SellBitCoin_Filter</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -319,6 +323,10 @@
     <servlet-mapping>
         <servlet-name>Bonus</servlet-name>
         <url-pattern>/Bonus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SellBitCoin_Filter</servlet-name>
+        <url-pattern>/SellBitCoin_Filter</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

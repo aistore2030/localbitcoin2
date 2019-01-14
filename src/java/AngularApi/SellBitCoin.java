@@ -76,6 +76,7 @@ public class SellBitCoin extends HttpServlet {
             if (!us.equals("")) {
                 Tradebyusername(con, st, out, us, domain, brl);
             } else {
+                
                 query = " select distinct(t.id),r.name,r.username as u,t.* from trade_transaction t,register r where t.type='" + cs + "' and t.username = r.username  order by t.trade_type DESC,t.id ASC";
                 ArrayList<SellBitCoin> a = new ArrayList<>();
                 System.out.println(query + "ghhhhhhhhhhhhh");

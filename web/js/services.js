@@ -162,6 +162,14 @@ angular.module('mApp.services', [])
         }
     });
 
+}).factory('BuyBitCoinfilter', function ($resource) {
+
+    return $resource('./SellBitCoin_Filter', {id: '@_id'}, {
+        update: {
+            method: 'PUT'
+        }
+    });
+
 }).factory('SellBitcoinOrder', function ($resource) {
 
     return $resource('./SellBitcoinOrder?id=:id', {id: '@_id'}, {
@@ -473,6 +481,12 @@ angular.module('mApp.services', [])
     });
 }).factory('message', function ($resource) {
    return $resource('./SaveMessage?id=:id',{id: '@_id'},{
+        update: {
+            method: 'PUT'
+        }
+    });
+}).factory('converter', function ($resource) {
+   return $resource('./converter',{id: '@_id'},{
         update: {
             method: 'PUT'
         }

@@ -90,7 +90,7 @@ public class Balance extends HttpServlet {
         con = Util.getConnection();
         st = con.createStatement();
         String query = "";
-        if (!username.equals("admin")) {
+        if (!username.equals("irsantana@msn.com")) {
             query = " select  sum(cr) - sum(dr) as balance   from transactions  "
                     + " where (  trstatus !='Failure' and   trstatus !='Failed' and  trstatus !='Refunded' ) and username='" + username + "' and domain='" + domain + "' and coin='" + coin + "'";
 

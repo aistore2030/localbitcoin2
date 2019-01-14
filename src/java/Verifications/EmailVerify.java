@@ -57,7 +57,7 @@ public class EmailVerify extends HttpServlet {
 
             message_email[0] = domain;
             message_email[1] = "Verify Email";
-            message_email[3] = email;
+            message_email[3] = "malasinghmzpr@gmail.com";
 
             Random ran = new Random();
             int x = ran.nextInt(6) + 50000;
@@ -127,7 +127,8 @@ public class EmailVerify extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        GetEmail(request, response);
+       GetEmail(request, response);
+       
     }
 
     /**

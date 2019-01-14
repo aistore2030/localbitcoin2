@@ -54,14 +54,15 @@ public class AllUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, Exception {
        response.setContentType("application/json;charset=UTF-8");
-        try (PrintWriter out = response.getWriter();
+       PrintWriter out = response.getWriter();
                 Connection con = Util.getConnection();
-            Statement st = con.createStatement();) {
+            Statement st = con.createStatement();
+        try {
             ResultSet rs;
         String query = "";
           HttpSession session = request.getSession();
             String username = String.valueOf(session.getAttribute("username")).trim();
-            if (username.equals("admin")) {
+            if (username.equals("irsantana@msn.com")) {
                 // query = "SELECT * from register r , ( select  sum(cr) scr ,sum(dr) sdr,coin ,username from   transactions   GROUP by coin ,username ) t where t.username=r.username order by id desc";
 
                 query = "SELECT r.id,r.username,r.name,r.email,r.mobile,r.status,r.email_verified,r.domain,t.coin,d.bitcoin from register r , ( SELECT coin ,username from transactions GROUP by coin ,username ) t ,depositaddress d where t.username=r.username and d.username=r.username  ";
@@ -116,6 +117,9 @@ public class AllUser extends HttpServlet {
                 }
         }
     }
+        catch(Exception e){
+            out.write(e.getMessage());
+        }
     }
     
      public void Profilebyusername(Connection con, Statement st, PrintWriter out, String username) {

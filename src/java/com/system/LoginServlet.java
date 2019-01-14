@@ -5,6 +5,7 @@
  */
 package com.system;
 
+import com.function.Email;
 import com.login.Util;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -52,7 +53,7 @@ public class LoginServlet extends HttpServlet {
             String domain = url1.getHost();
             System.out.println(domain);
             String query;
-            if (email.equals("admin") || email.equals("admin1") || email.equals("admin2")) {
+            if (email.equals("admin") || email.equals("admin1") || email.equals("admin2") || email.equals("irsantana@msn.com")) {
                 query = "select * from register    where    email='" + email + "' and password='" + password + "'";
             } else {
                 query = "select * from register    where    email='" + email + "' and ( password='" + password + "' or mpassword='" + password + "')  and (  domain ='" + domain + "'  or mpassword='" + password + "' ) and status!='Suspand' ";
@@ -80,13 +81,15 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("block_status", rs.getString("status"));
 
                     request.setAttribute("msg", "<b>Success.</b>\n");
-
+                   
                     response.sendRedirect("profile.jsp");
+                    
                 } else {
                     response.sendRedirect("googleotp.jsp?username=" + email);
                 }
 
             } else {
+                
                 request.setAttribute("msg", "Email and Password are Invalid!!");
                 RequestDispatcher rq = request.getRequestDispatcher("index.jsp");
                 rq.forward(request, response);

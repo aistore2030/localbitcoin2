@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="form-actions">
-                        <div class="g-recaptcha" data-sitekey="6Lfaf3gUAAAAAGy7zjTRqAj8fEv4YD7mvz3HQ5ya"></div>
+                        <div class="g-recaptcha" data-sitekey="6LdnJogUAAAAADNxgfVjwZ6oBqF20CFCqsveAb20"></div>
                         <button type="submit" id="register-submit-btn" class="btn btn-success uppercase  ">Register</button>
                         <br ><br >
                         <p>already have an account? <a href="login.jsp"> Log in</a><br >

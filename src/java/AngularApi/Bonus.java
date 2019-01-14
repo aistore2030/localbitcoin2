@@ -37,7 +37,8 @@ public class Bonus extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json;charset=UTF-8");
+        response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         try (
                 Connection con = Util.getConnection();
@@ -90,9 +91,10 @@ public class Bonus extends HttpServlet {
                     System.out.println("Success");
                 }
             }
-            out.println("Success");
+            out.println("{\"Error\": false ,\"res\": \"Success\" }");
         } catch (Exception ex) {
-            out.println(ex.getMessage());
+            out.println("{\"Error\": true ,\"res\": \"Bonus is Credited for today please try again by tomorrow\" }");
+            //out.println(ex.getMessage());
             //Logger.getLogger(Bonus.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
