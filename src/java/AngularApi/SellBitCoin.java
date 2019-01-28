@@ -23,6 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -62,6 +63,9 @@ public class SellBitCoin extends HttpServlet {
                 Statement st = con.createStatement();) {
             String cs = request.getParameter("cs");
             String us;
+             HttpSession session = request.getSession();
+            String id = String.valueOf(session.getAttribute("id"));
+            int r = Integer.parseInt(String.valueOf(session.getAttribute("roll")));
             try {
                 us = request.getParameter("username");
             } catch (Exception e) {
@@ -76,8 +80,13 @@ public class SellBitCoin extends HttpServlet {
             if (!us.equals("")) {
                 Tradebyusername(con, st, out, us, domain, brl);
             } else {
-                
+                if (r == 10) {
                 query = " select distinct(t.id),r.name,r.username as u,t.* from trade_transaction t,register r where t.type='" + cs + "' and t.username = r.username  order by t.trade_type DESC,t.id ASC";
+
+            } else {
+query = " select distinct(t.id),r.name,r.username as u,t.* from trade_transaction t,register r where t.type='" + cs + "' and t.username = r.username and t.userid='"+id+"' order by t.trade_type DESC,t.id ASC";
+            }
+                
                 ArrayList<SellBitCoin> a = new ArrayList<>();
                 System.out.println(query + "ghhhhhhhhhhhhh");
                 ResultSet rs = st.executeQuery(query);

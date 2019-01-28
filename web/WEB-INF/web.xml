@@ -164,6 +164,10 @@
         <servlet-name>SellBitCoin_Filter</servlet-name>
         <servlet-class>AngularApi.SellBitCoin_Filter</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ForgotPassword</servlet-name>
+        <servlet-class>com.system.ForgotPassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -327,6 +331,10 @@
     <servlet-mapping>
         <servlet-name>SellBitCoin_Filter</servlet-name>
         <url-pattern>/SellBitCoin_Filter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForgotPassword</servlet-name>
+        <url-pattern>/ForgotPassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -57,7 +57,12 @@ public class RegisterServlet extends HttpServlet {
                     + "values ('" + name + "','" + email + "','" + password + "' ,"
                     + "'" + email + "','Unverified','Approve','" + domain + "')";
             System.out.println(query);
-            int i1 = st.executeUpdate(query);
+            int i1 = st.executeUpdate(query, st.RETURN_GENERATED_KEYS);
+            int insertID = 0;
+            ResultSet rs1 = st.getGeneratedKeys();
+            if (rs1.next()) {
+                insertID = rs1.getInt(1);
+            }
             if (i1 > 0) {
                 PreparedStatement stmt = con.prepareStatement("insert into transactions  set trstatus=?, dr=? , cr=? , dr_ac=? , cr_ac=? ,username=?,description=? ,domain=?");
 
@@ -74,18 +79,18 @@ public class RegisterServlet extends HttpServlet {
                 System.out.print(stmt);
                 int i3 = stmt.executeUpdate();
 
-                String Address = "" ,address_id="" ,bitcoin_public_key="";
+                String Address = "", address_id = "", bitcoin_public_key = "";
                 query = "select bit_address,bitcoin_public_key,id from bitcoinaddress where status='Unused' limit 1";
                 System.out.println(query);
                 ResultSet rs = st.executeQuery(query);
                 if (rs.next()) {
                     Address = rs.getString("bit_address");
-                     bitcoin_public_key = rs.getString("bitcoin_public_key");
-                      address_id = rs.getString("id");
+                    bitcoin_public_key = rs.getString("bitcoin_public_key");
+                    address_id = rs.getString("id");
 
                     try {
-                        query = "insert into depositaddress set  username='" + username + "' ,bitcoin='" + Address + "' ,address_id='"+address_id+"' ,"
-                                + "bitcoin_public_key='"+bitcoin_public_key+"',bitcoin_private_key='None',archived_status='false',receiveAccount='a',"
+                        query = "insert into depositaddress set  username='" + username + "' ,bitcoin='" + Address + "' ,address_id='" + address_id + "' ,"
+                                + "bitcoin_public_key='" + bitcoin_public_key + "',bitcoin_private_key='None',archived_status='false',receiveAccount='a',"
                                 + "changeAccount='a',bitcoin2='2',bitcoin3='3',bitcoin_public_key2='0',bitcoin_private_key2='0',bitcoin_public_key3='1',"
                                 + "bitcoin_private_key3='1'";
                         System.out.println(query);
@@ -99,12 +104,13 @@ public class RegisterServlet extends HttpServlet {
                         System.out.println(e.getMessage());
                     }
                 }
+                session.setAttribute("id", insertID);
                 session.setAttribute("username", username);
                 session.setAttribute("email", email);
                 session.setAttribute("password", password);
                 session.setAttribute("roll", "3");
                 request.setAttribute("msg", "Successfully Registration,login ");
-                response.sendRedirect("profile.jsp");
+                response.sendRedirect("http://biticash.club/profile.jsp#!/buybitcoin");
 
             } else {
                 request.setAttribute("msg", "Fail Registration.");

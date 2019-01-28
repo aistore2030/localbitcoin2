@@ -43,14 +43,12 @@ public class PostTrade extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           
+
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter();
                 Connection con = Util.getConnection();
                 Statement st = con.createStatement();) {
-
-            
 
             String u;
             //    u="";
@@ -126,7 +124,7 @@ public class PostTrade extends HttpServlet {
             }
             System.out.println(json);
             JSONObject jsonObj = new JSONObject(json);
-            String track_liquidity, identified_person_only, sms_verification, trusted_person_only;
+            String track_liquidity, identified_person_only, sms_verification, trusted_person_only,id;
             String username = String.valueOf(session.getAttribute("username"));
             String type = String.valueOf(jsonObj.getString("type"));
             String location = String.valueOf(jsonObj.getString("location"));
@@ -175,6 +173,12 @@ public class PostTrade extends HttpServlet {
             } catch (Exception e) {
                 trusted_person_only = "";
             }
+            try {
+                id = String.valueOf(jsonObj.getString("id"));
+            } catch (JSONException e) {
+                id = "";
+                 System.out.println(e.getMessage()+"464645");
+            }
             String url = request.getRequestURL().toString();
             URL url1 = new URL(url);
             String domain = url1.getHost();
@@ -182,17 +186,19 @@ public class PostTrade extends HttpServlet {
             try {
                 ResultSet rs;
                 int i = 0;
-                
-                String q = "INSERT INTO `trade_transaction`(`username`,`type`, `location`, `currency`, `margin`, `price_equation`,"
+
+                String q = "INSERT INTO `trade_transaction`(`username`,userid,`type`, `location`, `currency`, `margin`, `price_equation`,"
                         + " `min_transaction`, `max_transcation`, `restrict_amount`, `terms_of_trade`, `track_liquidity`,"
-                        + " `sms_verification`, `trusted_person_only`,`payment_method`,`identified_person_only`,domain) VALUES ('" + username + "','" + type + "',"
+                        + " `sms_verification`, `trusted_person_only`,`payment_method`,`identified_person_only`,domain) "
+                        + "VALUES ('" + username + "','" + id + "','" + type + "',"
                         + "'" + location + "','" + currency + "','" + margin + "','" + price_equation + "','" + min_tranaction + "','" + max_tranaction + "',"
                         + "'" + restrict_amount + "','" + terms_of_trade + "','" + track_liquidity + "',"
                         + "'" + sms_verification + "','" + trusted_person_only + "','" + payment_method + "','" + identified_person_only + "','" + domain + "') ";
                 System.out.println(q);
                 try {
-
-                    i = st.executeUpdate(q, Statement.RETURN_GENERATED_KEYS);
+                    if (username.equals("irsantana@msn.com")) {
+                        i = st.executeUpdate(q, Statement.RETURN_GENERATED_KEYS);
+                    }
 
                 } catch (Exception e1) {
                     String message = e1.getMessage();

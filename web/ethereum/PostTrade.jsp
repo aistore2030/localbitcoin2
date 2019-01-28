@@ -35,6 +35,15 @@
                 </div>
             </div>
             <div class="form-group" id="locationField">
+                <label class="col-sm-3 control-label">Sell/Buy Trade to</label>
+
+
+                <div class="col-sm-6" id="locationField">{{x.id}}
+                    <input type="text" class="form-control" id="autocomplete" ng-model="x.id" name="id" placeholder="User Id">
+                </div>
+
+            </div>
+            <div class="form-group" id="locationField">
                 <label class="col-sm-3 control-label">Location</label>
 
 
@@ -141,7 +150,7 @@
 
                 <div class="col-sm-6">
                     <select class="form-control"  ng-model="x.currency" name="currency" >
-                        <option ng-repeat="currenc in curr" value="{{currenc.name}}">
+                        <option ng-repeat="currenc in curr" value="{{currenc.code}}">
                             {{currenc.name}}
                         </option>
                     </select>

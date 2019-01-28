@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -22,6 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -59,10 +59,19 @@ public class SellBitCoin_Filter extends HttpServlet {
         try (PrintWriter out = response.getWriter();
                 Connection con = Util.getConnection();
                 Statement st = con.createStatement();) {
-             String cs = request.getParameter("cs");
+            String cs = request.getParameter("cs");
             String curr = request.getParameter("currency");
             String query = "";
-            query = " select distinct(t.id),r.name,r.username as u,t.* from trade_transaction t,register r where t.type='" + cs + "' and t.currency='"+curr+"' and t.username = r.username  order by t.trade_type DESC,t.id ASC";
+            HttpSession session = request.getSession();
+            String id = String.valueOf(session.getAttribute("id"));
+            int r = Integer.parseInt(String.valueOf(session.getAttribute("roll")));
+            if (r == 10) {
+                query = " select distinct(t.id),r.name,r.username as u,t.* from trade_transaction t,register r where t.type='" + cs + "' and t.currency='" + curr + "' and t.username = r.username order by t.trade_type DESC,t.id ASC";
+
+            } else {
+                query = " select distinct(t.id),r.name,r.username as u,t.* from trade_transaction t,register r where t.type='" + cs + "' and t.currency='" + curr + "' and t.username = r.username and t.userid='" + id + "' order by t.trade_type DESC,t.id ASC";
+
+            }
             ArrayList<SellBitCoin_Filter> a = new ArrayList<>();
             System.out.println(query + "ghhhhhhhhhhhhh");
             ResultSet rs = st.executeQuery(query);

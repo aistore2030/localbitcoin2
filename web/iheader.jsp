@@ -120,7 +120,7 @@
 
                                         </ul>
                                     </li>
-                                    <%if (roll < 10) {
+                                    <%if (roll == 10) {
                                     %>
                                     <li><a  ui-sref="PostTrade">Post a Trade</a></li>
 

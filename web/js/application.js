@@ -414,7 +414,11 @@ angular.module('mApp').config(function ($stateProvider) {
         url:'/reply/:id/:username',
        templateUrl:'support/pendinganswer_reply.jsp',
         controller:'PendingAnswerReplyController'
+    }).state('login',{
+        url:'/login',
+       templateUrl:'ethereum/login.jsp',
+        controller:'LoginController'
     });
 }).run(function ($state) {
-    $state.go('BuyBitCoin');
+    $state.go('login');
 });

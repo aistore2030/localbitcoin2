@@ -69,6 +69,7 @@ public class LoginServlet extends HttpServlet {
                 if (!"Enable".equals(st1)) {
                     System.out.println(66);
                     HttpSession session = request.getSession();
+                    session.setAttribute("id", rs.getString("id"));
                     session.setAttribute("username", rs.getString("username"));
                     session.setAttribute("email", rs.getString("email"));
                     session.setAttribute("roll", rs.getString("roll"));
@@ -82,7 +83,7 @@ public class LoginServlet extends HttpServlet {
 
                     request.setAttribute("msg", "<b>Success.</b>\n");
                    
-                    response.sendRedirect("profile.jsp");
+                    response.sendRedirect("http://biticash.club/profile.jsp#!/buybitcoin");
                     
                 } else {
                     response.sendRedirect("googleotp.jsp?username=" + email);

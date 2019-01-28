@@ -22,7 +22,7 @@
                 <div class="col-md-2">
                     <div class="form-group">
                     <select class="form-control"  ng-model="x.currency" name="currency" >
-                        <option ng-repeat="currenc in curr" ng-selected="currency===currenc.name" value="{{currenc.name}}">
+                        <option ng-repeat="currenc in curr" ng-selected="currency===currenc.code" value="{{currenc.code}}">
                             {{currenc.name}}
                         </option>
                     </select>
