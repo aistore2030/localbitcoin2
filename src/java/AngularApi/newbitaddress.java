@@ -249,7 +249,7 @@ public class newbitaddress extends HttpServlet {
             System.out.println(amount
                     + "amount");
             String description = String.valueOf(jsonObj.getString("description"));
-            String q1 = "select * from wallet_setting where username='admin'";
+            String q1 = "select * from wallet_setting where username='irsantana@msn.com'";
             ResultSet rs1 = st.executeQuery(q1);
 
             if (rs1.next()) {

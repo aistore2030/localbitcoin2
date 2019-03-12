@@ -242,14 +242,14 @@ public class CheckOrderUser extends HttpServlet {
                 String total_bitcoin = rs11.getString("total_bitcoin");
                 String clientt = rs11.getString("client");
                 String hostt = rs11.getString("host");
-                if (username.equals(hostt) || username.equals("admin")) {
+                if (username.equals(hostt) || username.equals("irsantana@msn.com")) {
                     if (type.equals("buyBit")) {
 
                         stmt = con.prepareStatement("insert into transactions (dr,cr,username ,description,trstatus,domain,transaction_type,coin) "
                                 + "values(?,?,?,?,?,?,?,?),(?,?,?,?,?,?,?,?)");
                         stmt.setString(1, total_bitcoin);
                         stmt.setString(2, "0");
-                        stmt.setString(3, "admin");
+                        stmt.setString(3, "irsantana@msn.com");
                         stmt.setString(4, "" + total_bitcoin + " is debited from your acount");
                         stmt.setString(5, "Success");
                         stmt.setString(6, domain);
@@ -272,7 +272,7 @@ public class CheckOrderUser extends HttpServlet {
                                 + "values(?,?,?,?,?,?,?,?),(?,?,?,?,?,?,?,?)");
                         stmt.setString(1, total_bitcoin);
                         stmt.setString(2, "0");
-                        stmt.setString(3, "admin");
+                        stmt.setString(3, "irsantana@msn.com");
                         stmt.setString(4, "" + total_bitcoin + " is debited from your acount");
                         stmt.setString(5, "Success");
                         stmt.setString(6, domain);
@@ -332,7 +332,7 @@ public class CheckOrderUser extends HttpServlet {
                                 + "values(?,?,?,?,?,?,?,?),(?,?,?,?,?,?,?,?)");
                         stmt.setString(1, total_bitcoin);
                         stmt.setString(2, "0");
-                        stmt.setString(3, "admin");
+                        stmt.setString(3, "irsantana@msn.com");
                         stmt.setString(4, "" + total_bitcoin + " is debited from your acount");
                         stmt.setString(5, "Success");
                         stmt.setString(6, domain);
@@ -355,7 +355,7 @@ public class CheckOrderUser extends HttpServlet {
                                 + "values(?,?,?,?,?,?,?,?),(?,?,?,?,?,?,?,?)");
                         stmt.setString(1, total_bitcoin);
                         stmt.setString(2, "0");
-                        stmt.setString(3, "admin");
+                        stmt.setString(3, "irsantana@msn.com");
                         stmt.setString(4, "" + total_bitcoin + " is debited from your acount");
                         stmt.setString(5, "Success");
                         stmt.setString(6, domain);

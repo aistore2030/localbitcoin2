@@ -297,7 +297,7 @@ public class SellBitcoinOrder extends HttpServlet {
 
                             stmt.setString(9, "0");
                             stmt.setString(10, ab);
-                            stmt.setString(11, "admin");
+                            stmt.setString(11, "irsantana@msn.com");
                             stmt.setString(12, "" + ab + " is credited to your acount");
                             stmt.setString(13, "Success");
                             stmt.setString(14, domain);
@@ -315,7 +315,7 @@ public class SellBitcoinOrder extends HttpServlet {
                             s.sendemail(desc, client, subject);
                             request.setAttribute("msg", "order created successfully...." + msg);
                             Notification n = new Notification();
-                            n.SaveNotificationnew(client, host, "admin", desc, "http://" + domain + "/profile.jsp?lang=en#!/chatbox/" + id);
+                            n.SaveNotificationnew(client, host, "irsantana@msn.com", desc, "http://" + domain + "/profile.jsp?lang=en#!/chatbox/" + id);
                         } else {
 
                             out.println("{\"Error\": true ,\"Message\": \"Technichal error try after some time\" }");
@@ -354,7 +354,7 @@ public class SellBitcoinOrder extends HttpServlet {
 
                             stmt.setString(9, "0");
                             stmt.setString(10, ab);
-                            stmt.setString(11, "admin");
+                            stmt.setString(11, "irsantana@msn.com");
                             stmt.setString(12, "" + ab + " is credited to your acount");
                             stmt.setString(13, "Success");
                             stmt.setString(14, domain);
@@ -371,7 +371,7 @@ public class SellBitcoinOrder extends HttpServlet {
                             s.sendemail(desc, client, subject);
                             System.out.println("senddddddddddddddd");
                             Notification n = new Notification();
-                            n.SaveNotificationnew(client, host, "admin", desc, "http://" + domain + "/profile.jsp?lang=en#!/chatbox/" + id);
+                            n.SaveNotificationnew(client, host, "irsantana@msn.com", desc, "http://" + domain + "/profile.jsp?lang=en#!/chatbox/" + id);
                             String msg = "Contact #" + id + ": Buying " + ab + "BTC  Buying in advertisement #" + idd + "  to " + host + " at the exchange rate " + amount + " USD / BTC.";
                             out.println("{\"Error\":false,\"Message\": \"order created successfully....\",\"id\": \"" + id + "\" }");
 

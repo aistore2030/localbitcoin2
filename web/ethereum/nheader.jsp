@@ -56,11 +56,11 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <%             /**String url = request.getRequestURL().toString();
+                                <%             /*String url = request.getRequestURL().toString();
                                     //Logo l = new Logo();
-                                    //String a = l.logo(url);
-                                    //URL url1 = new URL(url);
-                                    //String domain = url1.getHost();**/
+                                   // String a = l.logo(url);
+                                   // URL url1 = new URL(url);
+                                   /// String domain = url1.getHost();*/
                                     
 
                                 %>

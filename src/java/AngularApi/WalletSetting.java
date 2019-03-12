@@ -103,7 +103,7 @@ public class WalletSetting extends HttpServlet {
             con = Util.getConnection();
             st = con.createStatement();
             if (roll == 10) {
-                String q = "select * from wallet_setting where username='admin'";
+                String q = "select * from wallet_setting where username='"+username+"'";
                 ResultSet rs = st.executeQuery(q);
                 WalletSetting w = new WalletSetting();
                 if (rs.next()) {

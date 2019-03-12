@@ -83,7 +83,8 @@ public class LoginServlet extends HttpServlet {
 
                     request.setAttribute("msg", "<b>Success.</b>\n");
                    
-                    response.sendRedirect("http://biticash.club/profile.jsp#!/buybitcoin");
+                    //response.sendRedirect("http://"+domain+"/profile.jsp#!/buybitcoin");
+                    response.sendRedirect("http://"+domain+"/profile.jsp#!/buybitcoin");
                     
                 } else {
                     response.sendRedirect("googleotp.jsp?username=" + email);

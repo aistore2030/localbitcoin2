@@ -54,7 +54,7 @@ public class SetMargin extends HttpServlet {
             String margin = null;
            
 
-            String query = "select margin ,bonus from register where username='admin'";
+            String query = "select margin ,bonus from register where username='irsantana@msn.com'";
             System.out.println(query);
             ResultSet rs = st.executeQuery(query);
             SetMargin a1 = new SetMargin();
@@ -142,7 +142,7 @@ public class SetMargin extends HttpServlet {
             con = Util.getConnection();
             st = con.createStatement();
             if (r == 10) {
-                String query = "update register set margin='" + margin + "' ,bonus='" + bonus + "' where username='admin'";
+                String query = "update register set margin='" + margin + "' ,bonus='" + bonus + "' where username='irsantana@msn.com'";
                 System.out.println(query);
                 int i = st.executeUpdate(query);
                 if (i > 0) {

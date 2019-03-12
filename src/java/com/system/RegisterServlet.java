@@ -110,7 +110,7 @@ public class RegisterServlet extends HttpServlet {
                 session.setAttribute("password", password);
                 session.setAttribute("roll", "3");
                 request.setAttribute("msg", "Successfully Registration,login ");
-                response.sendRedirect("http://biticash.club/profile.jsp#!/buybitcoin");
+                response.sendRedirect("http://"+domain+"/profile.jsp#!/buybitcoin");
 
             } else {
                 request.setAttribute("msg", "Fail Registration.");

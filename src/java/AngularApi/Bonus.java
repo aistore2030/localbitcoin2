@@ -54,7 +54,7 @@ public class Bonus extends HttpServlet {
             System.out.println(query);
             rs = st.executeQuery(query);
 
-            String query2 = "select bonus from register where username='admin'";
+            String query2 = "select bonus from register where username='irsantana@msn.com'";
 
             System.out.println(query2);
             ResultSet rs2 = st2.executeQuery(query2);

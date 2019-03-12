@@ -1703,5 +1703,5 @@ console.log($scope.curr);
     //$scope.records = message.query({id: $stateParams.id, username: $stateParams.username});
 
 }).controller('LoginController',function($window){
-    $window.open("http://biticash.club/login.jsp#!/login", "_self");
+    $window.open("http://www.permutecoin.trade/login.jsp#!/login", "_self");
 });

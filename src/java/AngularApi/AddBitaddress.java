@@ -70,7 +70,7 @@ public class AddBitaddress extends HttpServlet {
             String encodeURL = URLEncoder.encode(urlen, "UTF-8");
             Wget w = new Wget();
             String u;
-             String q = "select * from wallet_setting where username='admin'";
+             String q = "select * from wallet_setting where username='irsantana@msn.com'";
                  rs = st.executeQuery(q);
                
                 if (rs.next()) {

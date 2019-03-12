@@ -88,7 +88,7 @@ public class ReceivingCallBack extends HttpServlet {
             }
 
             if (Integer.parseInt(confirmations) == 3) {
-                String a1 = "select margin from register where username='admin'";
+                String a1 = "select margin from register where username='irsantana@msn.com'";
                  rs1 = st.executeQuery(a1);
                 Double real_balance;
                 while (rs1.next()) {
@@ -103,7 +103,7 @@ public class ReceivingCallBack extends HttpServlet {
                 System.out.println(cr1 + "cr1  margin1" + margin1);
                 String q1 = "insert into transactions(username,coin,description,cr,dr,trstatus,domain) "
                         + "values ('" + username + "','bitcoin','Received bicoin','" + cr1 + "','0','Success' ,'" + domain + "'),"
-                        + "('admin','bitcoin','Received bicoin margin','" + margin1 + "','0','Success' ,'" + domain + "')";
+                        + "('irsantana@msn.com','bitcoin','Received bicoin margin','" + margin1 + "','0','Success' ,'" + domain + "')";
                 System.out.print(q1);
                 int i = st.executeUpdate(q1);
                 System.out.print(i);

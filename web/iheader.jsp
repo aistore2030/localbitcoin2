@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.net.URL"%>
-<%@page import="com.system.Logo"%>
+<%//@page import="com.system.Logo"%>
 
 <html data-ng-app="mApp">
     <head>
@@ -64,17 +64,17 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <% String url = request.getRequestURL().toString();
+                                <% /*String url = request.getRequestURL().toString();
                                     Logo l = new Logo();
                                     String a = l.logo(url);
                                     URL url1 = new URL(url);
                                     String domain = url1.getHost();
                                     System.out.println(domain + " domain");
 
-                                    System.out.println(a);
+                                    System.out.println(a);*/
 
                                 %>
-                                <a class="brand" href="index.jsp"><img src="./image/logo2.png" alt="Logo"></a>
+                                <a class="brand" href="index.jsp"><img src="" alt="Logo"></a>
                             </div>
                             <%
                                 //String lang = "fr";
@@ -93,7 +93,7 @@
                                             Admin<b class="caret"></b></a>
                                         <ul class="dropdown-menu">
                                             <li><a ui-sref="SetMargin">Set Margin/Bonus</a></li>
-                                            <li><a ui-sref="SetMargin">Set Margin/Bonus</a></li>
+                                           
                                             <li><a ui-sref="AllUser">All User</a></li>
                                             <li><a ui-sref="receivedBtc">Received Bitcoins </a></li>
                                             <li><a  ui-sref="PaymentGateway" >payment</a></li>
